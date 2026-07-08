@@ -1,10 +1,13 @@
-﻿Console.WriteLine("Good Day Future Develoepr! Welcome to your developer journey.");
+﻿//Prints out the text into the console
+Console.WriteLine("Good Day Future Develoepr! Welcome to your developer journey.");
 
+//Variables = defines the data type of an object
 string name = "KD";
 int currentWeek = 0;
 int currentDay = 1;
 string goal = "achieve my dream of becoming a developer on or before 2027!";
 
+//Prints out the text along with the object called out
 Console.WriteLine($"Name: {name}");
 Console.WriteLine($"Date: {currentWeek} + {currentDay}");
 Console.WriteLine($"Goal: {goal}");
