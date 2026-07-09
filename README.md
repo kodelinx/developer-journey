@@ -22,5 +22,6 @@ IT Asset \& Support Ticket Management System
 ### Week 0
 
 * Day 1: Set up developer tools for development workflow. Start C# coding.
-* Day 2: Practiced console input, output, and basic data conversion
+* Day 2: Practiced console input, output, and basic data conversion. 
+* Day 3: Practiced conditionals and ticket decision logic. STARTED MY APP PROJECT (IASTMS).
 
