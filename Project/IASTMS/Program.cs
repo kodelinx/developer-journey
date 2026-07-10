@@ -6,6 +6,10 @@ Console.WriteLine();
 Console.WriteLine();
 
 // Collect user input for the ticket information
+Console.Write("What's your role (Admin/Technician/Viewer)? ");
+string role = Console.ReadLine();
+Console.WriteLine();
+
 Console.WriteLine("Kindly File a Ticket Below");
 Console.Write("Ticket Subject: ");
 string subject = Console.ReadLine();
@@ -15,6 +19,10 @@ Console.Write("Affected User: ");
 string user  = Console.ReadLine();
 Console.Write("Affected Device (Lenovo|MacBook|HP): " );
 string device = Console.ReadLine();
+Console.Write("Age of Device(years): ");
+int deviceAge = Convert.ToInt32(Console.ReadLine());
+Console.Write("Is the device damaged (True/False)? ");
+bool deviceDamaged = Convert.ToBoolean(Console.ReadLine());
 Console.Write("Ticket Severity (1|2|3): ");
 int severity = Convert.ToInt32(Console.ReadLine());
 Console.Write("Ticket Status (Open|In Progress|Closed): ");
@@ -84,5 +92,39 @@ else{
     Console.WriteLine("Unknown Status");
 }
 Console.WriteLine();
+
+//Identify device replacement
+if(deviceAge > 2 || deviceDamaged)
+{
+    Console.WriteLine("Replacement is recommended.");
+}
+else
+{
+    Console.WriteLine("Proceed to Troubleshooting.");
+}
+
+//Identify and notify ticket urgency
+if(severity == 1 && status == "Open" || status == "In Progress")
+{
+    Console.WriteLine("Urgent Active Ticket! We will investigate this issue immediately.");
+}
+else if(severity == 1 && status == "Closed")
+{
+    Console.WriteLine("Urgent but already resolved");
+}
+else
+{
+    Console.WriteLine("Regular Ticket");
+}
+
+//Identify ticket access based on roles
+if(role == "Admin" || role == "Technician")
+{
+    Console.WriteLine("Please work on the Ticket and provide updates!");
+}
+else
+{
+    Console.WriteLine("You can only view this ticket.");
+}
 
 
