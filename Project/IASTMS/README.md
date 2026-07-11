@@ -26,7 +26,7 @@ To build a system inspired by managed services and IT support workflows.
 Concepts applied:
 
 - Console input/output
-- Variables
+- Variable declarations
 
 Features:
 
@@ -38,6 +38,8 @@ Features:
 
 Concepts applied:
 
+- Console input/output
+- Variable declarations
 - if / else if / else 
 - Logical operators
 - && / || / !
@@ -53,6 +55,62 @@ Features:
 - Identify device health
 - Identify and notify ticket urgency
 - Identify role based access
+
+### M03 - Menu Driven Ticket Manager
+
+Concepts applied:
+
+- `while` loop for repeated menu navigation
+- `while (true)` loop with `break` for input validation
+- Boolean flags for program control
+  - `isExit` controls when the program stops
+  - `hasTicket` checks if a ticket already exists
+- Variable declaration, initialization, and assignment
+- Console input and output
+- Data conversion using `Convert.ToInt32`
+- Manual boolean conversion from string input
+- Conditional statements using `if`, `else if`, and `else`
+- Logical operators using `&&` and `||`
+- Nested conditionals for role-based ticket progress messages
+- Basic input validation for role, device, and damaged status
+- Basic menu-driven application flow
+- Basic ticket state checking before viewing or checking urgency
+
+Features:
+
+- Repeating main menu
+- Create a support ticket
+- View latest ticket only if a ticket exists
+- Check ticket urgency/progress only if a ticket exists
+- Prevent viewing empty ticket details using `hasTicket`
+- Exit the ticket tracker using menu option 4
+- Validate role input: Admin, Technician, or Viewer
+- Validate affected device input: Lenovo, MacBook, or HP
+- Validate damaged status input: True or False
+- Input ticket subject and description
+- Input affected user
+- Input affected device
+- Input device age
+- Input device damage status
+- Input ticket severity
+- Input ticket status
+- Input date of issue occurrence
+- Display ticket creation confirmation
+- Display ticket status notification
+- Recommend replacement or troubleshooting based on device condition
+- Identify urgent active tickets using severity and status
+- Identify urgent but already resolved tickets
+- Identify regular tickets
+- Assign technician based on affected device
+- Display ticket priority label based on severity
+- Display latest ticket details
+- Display role-based ticket progress messages for Admin, Technician, and Viewer
+
+Planned features/fix:
+- Verify validity of input severity and status
+- Add user log-in functionality. Functions availability is based on permission assigned.
+- Add validation to incorrect input data type
+- Fix case sensitive inputs by applying toLower function
 
 ## Planned Product Versions
 
