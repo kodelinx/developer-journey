@@ -29,4 +29,5 @@ The goal of this project is to apply my managed services experience into a pract
 * Day 2: Practiced console input, output, and basic data conversion. 
 * Day 3: Practiced conditionals and ticket decision logic. STARTED MY APP PROJECT (IASTMS).
 * Day 4: Practiced logical operators and combined decision-making
+* Day 5: Practiced loops and created a menu-driven ticket manager
 
