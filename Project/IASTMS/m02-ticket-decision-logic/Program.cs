@@ -61,13 +61,13 @@ else{
 // Designate priority level based on indicated severity
 if(severity == 1)
 {
-    Console.WriteLine($"Ticket Priority: High");
+    Console.WriteLine($"Ticket Priority: High - {severity}");
 }else if (severity == 2)
 {
-    Console.WriteLine($"Ticket Priority: Medium");
+    Console.WriteLine($"Ticket Priority: Medium - {severity}");
 }else if (severity == 3)
 {
-    Console.WriteLine($"Ticket Priority: Low");
+    Console.WriteLine($"Ticket Priority: Low - {severity}");
 }
 else{
     Console.WriteLine($"Ticket Priority: Undefined");
