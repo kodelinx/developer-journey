@@ -87,6 +87,7 @@ Features:
 - Validate role input: Admin, Technician, or Viewer
 - Validate affected device input: Lenovo, MacBook, or HP
 - Validate damaged status input: True or False
+- Verify validity of input severity and status
 - Input ticket subject and description
 - Input affected user
 - Input affected device
@@ -106,11 +107,6 @@ Features:
 - Display latest ticket details
 - Display role-based ticket progress messages for Admin, Technician, and Viewer
 
-Planned features/fix:
-- Verify validity of input severity and status
-- Add user log-in functionality. Functions availability is based on permission assigned.
-- Add validation to incorrect input data type
-- Fix case sensitive inputs by applying toLower function
 
 ## Planned Product Versions
 

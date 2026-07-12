@@ -1,19 +1,19 @@
 ﻿//Declaration and initialization of objects required
-int option = 0;
 string role = "";
 string subject = "";
 string description = "";
 string user = "";
 string technician = "";
 string device = "";
-int deviceAge;
-bool deviceDamaged;
-int severity = 0;
 string status = "";
+int option;
+int deviceAge;
+int severity = 0;
 int month = 0;
 int day = 0;
 int year = 0;
-bool isExit = false;
+bool deviceDamaged;
+bool keepRunning = true;
 bool hasTicket = false;
 
 
@@ -25,7 +25,7 @@ Console.WriteLine();
 Console.WriteLine();
 
 
-while (!isExit)
+while (keepRunning)
 {
     Console.WriteLine("1. Create Ticket");
     Console.WriteLine("2. View Latest Ticket");
@@ -40,7 +40,7 @@ while (!isExit)
     if(option == 1)
     {
         // Collect user input for the ticket information
-        //Verify correct input value
+        //Verify correct input value of role
         while (true)
         {
             Console.Write("What's your role (Admin/Technician/Viewer)? ");
@@ -64,7 +64,7 @@ while (!isExit)
         Console.Write("Affected User: ");
         user  = Console.ReadLine();
 
-        //Verify correct input value
+        //Verify correct input value of Device
         while (true)
         {
             Console.Write("Affected Device (Lenovo|MacBook|HP): " );
@@ -81,10 +81,10 @@ while (!isExit)
 
         }
 
-        Console.Write("Age of Device(years): ");
+        Console.Write("Age of Device(year(s)): ");
         deviceAge = Convert.ToInt32(Console.ReadLine());
 
-        //Verify correct input value
+        //Verify correct input value of device damage status
         while (true)
         {
             Console.Write("Is the device damaged (True/False)? ");
@@ -108,10 +108,36 @@ while (!isExit)
             }
         }
 
-        Console.Write("Ticket Severity (1|2|3): ");
-        severity = Convert.ToInt32(Console.ReadLine());
-        Console.Write("Ticket Status (Open|In Progress|Closed): ");
-        status = Console.ReadLine();
+        //Verify the correct input value of severity
+        while (true)
+        {
+            Console.Write("Ticket Severity (1|2|3): ");
+            severity = Convert.ToInt32(Console.ReadLine());
+            if (severity >= 1 && severity <=3)
+            {
+                break;
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter enter the correct level.");
+                Console.WriteLine();
+            }
+        }
+        //verify the correct input value of status
+        while (true)
+        {
+            Console.Write("Ticket Status (Open|In Progress|Closed): ");
+            status = Console.ReadLine();
+            if (status == "Open" || status == "In Progress" || status == "Closed" )
+            {
+                break;
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter enter the correct level.");
+                Console.WriteLine();
+            }
+        }
         Console.WriteLine("Date of Issue Occurence (Numeric)");
         Console.Write("Month: ");
         month = Convert.ToInt32(Console.ReadLine());
@@ -297,7 +323,7 @@ while (!isExit)
     else if (option == 4)
     {
         Console.WriteLine("Ticket Tracker has been closed.");
-        isExit = true;
+        keepRunning = false;
         Console.WriteLine();
     }
     else
