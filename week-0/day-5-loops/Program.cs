@@ -49,7 +49,7 @@ if (!isLoggedIn)
     Console.WriteLine("Account Locked");
 }
 */
-//Project Applicationk: A simple ticket number query to identify number of ticket to be raised
+//Project Application: A simple ticket number query to identify number of ticket to be raised
 Console.WriteLine();
 Console.WriteLine();
 Console.WriteLine("TICKET COUNTER");
