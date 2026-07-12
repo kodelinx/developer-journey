@@ -107,6 +107,29 @@ Features:
 - Display latest ticket details
 - Display role-based ticket progress messages for Admin, Technician, and Viewer
 
+### M04 - Reusable Ticket Actions
+
+Concepts applied:
+
+- Methods
+- `void` methods
+- Return methods
+- Method parameters
+- Method return values
+- Code refactoring
+- Reusable decision logic
+
+Features:
+
+- Added reusable app title display
+- Added reusable menu display
+- Moved technician assignment logic into a method
+- Moved priority label logic into a method
+- Moved device action logic into a method
+- Moved urgency message logic into a method
+- Moved role access message logic into a method
+- Improved readability of the ticket manager
+- Reduced repeated conditional logic
 
 ## Planned Product Versions
 
