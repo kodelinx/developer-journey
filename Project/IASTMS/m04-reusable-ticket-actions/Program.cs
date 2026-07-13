@@ -28,6 +28,10 @@ static void ShowMenu()
     Console.WriteLine("4. Exit");
     Console.WriteLine("");
 }
+static void ShowInvalidInput()
+{
+    Console.WriteLine("Incorrect input. Please try again!\n");
+}
 //method to returns a value
 static string GetPriorityLabel(int severity)
 {
@@ -115,7 +119,17 @@ static string GetRoleAccessMessage(string role)
         return  "You can only view this ticket.";
     }
 }
-
+static bool GetDeviceDamageStatus(string input)
+{
+    if(input == "True")
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
 
 // Print out the App Title
 ShowAppTitle();
@@ -142,7 +156,7 @@ while (keepRunning)
             }
             else
             {
-                Console.WriteLine("Input is incorrect. Please choose a valid role.\n");
+                ShowInvalidInput();
             }
         }
         Console.WriteLine("\nKindly File a Ticket Below");
@@ -164,8 +178,7 @@ while (keepRunning)
             }  
             else
             {
-                Console.WriteLine("Device mentioned is not managed by our Team. Kindly indicate from one of the options.");
-                Console.WriteLine();
+                ShowInvalidInput();
             }
 
         }
@@ -180,20 +193,12 @@ while (keepRunning)
             string input = Console.ReadLine();
             if (input == "True" || input == "False")
             {
-                if(input == "True")
-                {
-                    deviceDamaged = true;
-                }
-                else
-                {
-                    deviceDamaged = false;
-                }
+                deviceDamaged = GetDeviceDamageStatus(input);
                 break;
             }
             else
             {
-                Console.WriteLine("Invalid input. Please enter True/False.");
-                Console.WriteLine();
+                ShowInvalidInput();
             }
         }
 
@@ -208,7 +213,7 @@ while (keepRunning)
             }
             else
             {
-                Console.WriteLine("Invalid input. Please enter enter the correct level.\n");
+                ShowInvalidInput();
             }
         }
         //verify the correct input value of status
@@ -222,8 +227,7 @@ while (keepRunning)
             }
             else
             {
-                Console.WriteLine("Invalid input. Please enter enter the correct level.");
-                Console.WriteLine();
+                ShowInvalidInput();
             }
         }
         Console.WriteLine("Date of Issue Occurence (Numeric)");
