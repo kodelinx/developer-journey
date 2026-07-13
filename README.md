@@ -31,4 +31,5 @@ The goal of this project is to apply my managed services experience into a pract
 * Day 4: Practiced logical operators and combined decision-making
 * Day 5: Practiced loops and created a menu-driven ticket manager
 * Day 6: Practiced method and refactored ricket logic into reusable actions
+* Day 7: Reviewed Week 0 C# fundamentals and cleaned up project documentation
 
