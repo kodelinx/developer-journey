@@ -33,3 +33,11 @@ The goal of this project is to apply my managed services experience into a pract
 * Day 6: Practiced method and refactored ricket logic into reusable actions
 * Day 7: Reviewed Week 0 C# fundamentals and cleaned up project documentation
 
+### Week 1
+
+* Day 1: Classes and Objects
+* Day 2: Constructors + Object Initialization
+* Day 3: Lists / Multiple Tickets
+* Day 4: Search, Update, and Delete Ticket Actions
+* Day 5: Refactor IASTMS Using OOP
+* Day 6: Review, Cleanup, GitHub, and Documentation
