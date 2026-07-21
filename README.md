@@ -36,7 +36,7 @@ The goal of this project is to apply my managed services experience into a pract
 ### Week 1
 
 * Day 1: Classes and Objects
-* Day 2: Constructors + Object Initialization
+* Day 2: Constructors + Object Initialization + Methods in class
 * Day 3: Lists / Multiple Tickets
 * Day 4: Search, Update, and Delete Ticket Actions
 * Day 5: Refactor IASTMS Using OOP
