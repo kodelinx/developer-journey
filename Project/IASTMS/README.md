@@ -154,6 +154,30 @@ Features / Improvements:
 - Grouped related user information into a `Technician` object
 - Improved project organization by reducing loose variables
 
+### M06 - Cleaner Object Initialization
+
+Update type: Learning milestone + project structure improvement  
+Product version: Not yet v0.1.0
+
+Concepts applied:
+
+- Constructors
+- Object initialization
+- Constructor parameters
+- Property assignment inside constructors
+- Cleaner object creation
+- Methods in Class
+
+Features / Improvements:
+
+- Added constructor to Ticket model
+- Added constructor to Asset model
+- Added constructor to User model
+- Added constructor to Tehcnician model
+- Transferred GetPriorityLabel method inside Ticket model
+- Improved object creation by passing values directly into objects
+- Reduced repeated property assignment after object creation
+
 ## Planned Product Versions
 
 - v0.1.0: Console prototype
