@@ -131,6 +131,29 @@ Features:
 - Improved readability of the ticket manager
 - Reduced repeated conditional logic
 
+### M05 - Ticket and Asset Models
+
+Concepts applied:
+
+- Classes
+- Objects
+- Properties
+- Object creation using `new`
+- Dot notation
+- Basic data modeling
+
+Features / Improvements:
+
+- Added `Ticket` model
+- Added `Asset` model
+- Added `User` model
+- Added `Technician` model
+- Grouped related ticket information into a `Ticket` object
+- Grouped related device information into an `Asset` object
+- Grouped related user information into a `User` object
+- Grouped related user information into a `Technician` object
+- Improved project organization by reducing loose variables
+
 ## Planned Product Versions
 
 - v0.1.0: Console prototype
@@ -139,3 +162,4 @@ Features:
 - v0.4.0: ASP.NET Core Web API version
 - v0.5.0: Frontend dashboard prototype
 - v1.0.0: Complete MVP
+
