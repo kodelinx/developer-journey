@@ -178,6 +178,32 @@ Features / Improvements:
 - Improved object creation by passing values directly into objects
 - Reduced repeated property assignment after object creation
 
+### M07 - Multiple Ticket Storage
+
+Update type: Learning milestone + feature update + project improvement  
+Product version: Not yet v0.1.0
+
+Concepts applied:
+
+- `List<T>`
+- `List<Ticket>`
+- `Add()`
+- `Count`
+- `foreach`
+- Multiple object storage
+- Empty list checking
+
+Features / Improvements:
+
+- Added multiple ticket storage
+- Replaced single-ticket tracking with `List<Ticket>` to store more tickets
+- Consolidated other classes into single class (Ticket) for better utilization of foreach loop
+- Added ability to create multiple tickets
+- Added ability to view all tickets
+- Added ticket count display
+- Improved project realism by supporting more than one support ticket
+- Improved ticket checking by utilizing ticket.Count rather than using a bool hasTicket
+
 ## Planned Product Versions
 
 - v0.1.0: Console prototype
