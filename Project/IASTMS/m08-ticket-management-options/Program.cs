@@ -11,14 +11,18 @@ bool keepRunning = true;
 //method to printout text
 static void ShowAppTitle()
 {
-    Console.WriteLine("\n\nIT Asset & Support Ticket Management System IASTMS\n\n");
+    Console.WriteLine("\n\nIT Asset & Support Ticket Management System IASTMS\n");
 }
 static void ShowMenu()
 {
     Console.WriteLine("1. Create Ticket");
-    Console.WriteLine("2. View Latest Ticket");
-    Console.WriteLine("3. Check Ticket Urgency");
-    Console.WriteLine("4. Exit");
+    Console.WriteLine("2. View All Tickets");
+    Console.WriteLine("3. Search Ticket");
+    Console.WriteLine("4. Update Ticket Status");
+    Console.WriteLine("5. Delete Ticket");
+    Console.WriteLine("6. View Ticket Count");
+    //Console.WriteLine("3. Check Ticket Urgency");
+    Console.WriteLine("7. Exit");
     Console.WriteLine("");
 }
 static void ShowInvalidInput()
@@ -109,6 +113,10 @@ static bool GetDeviceDamageStatus(string input)
 
 // Print out the App Title
 ShowAppTitle();
+
+tickets.Add(new Ticket("subject1", "description1","Open",3,1,1,2026,"Lenovo",5,true,"Dave","Admin"));
+tickets.Add(new Ticket("subject2", "description2","Close",1,2,2,2026,"HP",5,true,"Hera","Viewer"));
+
 
 while (keepRunning)
 {
@@ -270,15 +278,48 @@ while (keepRunning)
     {
         if (tickets.Count > 0)
         {
-            int counter = 1;
             //Print out the ticket information
             Console.WriteLine("Refer to the ticket details below:");
             Console.WriteLine();
-
-            foreach(Ticket ticket in tickets)
+            for(int i = 0; i < tickets.Count; i++)
             {
-                Console.WriteLine($"TICKET NUMBER {counter}");
-                Console.WriteLine($"Ticket Subject: {ticket.Subject}");
+                Console.WriteLine($"TICKET NUMBER {i + 1}");
+                Console.WriteLine($"Ticket Subject: {tickets[i].Subject}");
+                Console.WriteLine($"Ticket Description: {tickets[i].Description}");
+                Console.WriteLine($"Affected User: {tickets[i].AffectedUser}");
+                Console.WriteLine($"Affected Device: {tickets[i].Brand}");
+
+                // Assign a technician will takeover this ticket based on the device affected.
+                Console.WriteLine($"Technician: {GetTechnician(tickets[i].Brand)}");
+
+                // Designate priority level based on indicated severity
+                //Called a method from a class ticket
+                Console.WriteLine($"Ticket Priority: {tickets[i].GetPriorityLabel()} - {tickets[i].Severity}");
+
+                Console.WriteLine($"Ticket Status: {tickets[i].Status}");
+                Console.WriteLine($"Date of Occurence (m/d/y): {tickets[i].Month}/{tickets[i].Day}/{tickets[i].Year}\n");
+            }
+        }
+        else
+        {
+            Console.WriteLine("No ticket has been created yet.");
+        }
+        Console.WriteLine();
+        
+    }
+    else if(option == 3)
+    {
+        //Search for a ticket
+        Console.Write("Enter Ticket Subject: ");
+        string searchSubject = Console.ReadLine();
+
+        bool found = false;
+
+        foreach(Ticket ticket in tickets)
+        {
+            if  (ticket.Subject == searchSubject)
+            {
+                Console.WriteLine($"\nTicket Subject: {ticket.Subject}");
                 Console.WriteLine($"Ticket Description: {ticket.Description}");
                 Console.WriteLine($"Affected User: {ticket.AffectedUser}");
                 Console.WriteLine($"Affected Device: {ticket.Brand}");
@@ -292,18 +333,59 @@ while (keepRunning)
 
                 Console.WriteLine($"Ticket Status: {ticket.Status}");
                 Console.WriteLine($"Date of Occurence (m/d/y): {ticket.Month}/{ticket.Day}/{ticket.Year}\n");
-                //To provide ticket number for each iteration
-                counter++;
+                found = true;
             }
+        }
+        if (!found)
+        {
+            Console.WriteLine("\nThe ticket subject is not existing.\n");
+        }
+    }
+    else if(option == 4)
+    {
+        //Update ticket status
+        Console.Write("Which ticket to update status: ");
+        int ticketNumber = Convert.ToInt32(Console.ReadLine());
+
+        int index = ticketNumber - 1;
+
+        if(index >= 0 && ticketNumber <= tickets.Count)
+        {
+            Console.Write("Enter new status: ");
+            string newStatus = Console.ReadLine();
+
+            tickets[index].Status = newStatus;
+
+            Console.WriteLine("Ticket Updated.\n");
         }
         else
         {
-            Console.WriteLine("No ticket has been created yet.");
+            Console.WriteLine("\nThe ticket is not existing.\n");
         }
-        Console.WriteLine();
         
     }
-    else if(option == 3)
+    else if(option == 5)
+    {
+        //Delete a ticket
+        Console.Write("Which ticket to delete: ");
+        int ticketNumber = Convert.ToInt32(Console.ReadLine());
+        int index = ticketNumber - 1;
+        if(index >= 0 && ticketNumber <= tickets.Count)
+        {
+            tickets.RemoveAt(index);
+            Console.WriteLine("Ticket has been deleted.\n");
+        }
+        else
+        {
+            Console.WriteLine("\nThe ticket is not existing.\n");
+        }
+    }
+    else if(option == 6)
+    {
+        //Provide total ticket count
+        Console.WriteLine($"There is a total  of {tickets.Count} tickets.\n");
+    }
+    /*else if(option == 10)
     {
         //Check ticket progress for each ticket
         if (tickets.Count > 0)
@@ -371,15 +453,17 @@ while (keepRunning)
             Console.WriteLine("No ticket has been created yet.");
         }
         Console.WriteLine();
-    }
-    else if (option == 4)
+    }*/
+    else if (option == 7)
     {
+        //Close program
         Console.WriteLine("Ticket Tracker has been closed.");
         keepRunning = false;
         Console.WriteLine();
     }
     else
     {
+        //Indicate that option chosen is not valid
         Console.WriteLine("Please enter a valid option. Thank you!");
         Console.WriteLine();
     }
