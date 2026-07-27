@@ -204,6 +204,76 @@ Features / Improvements:
 - Improved project realism by supporting more than one support ticket
 - Improved ticket checking by utilizing ticket.Count rather than using a bool hasTicket
 
+
+### M08 - Ticket Management Actions
+
+Update type: Learning milestone + feature update + project improvement  
+Product version: Not yet v0.1.0
+
+Concepts applied:
+
+- List index
+- `for` loop with index
+- `foreach` search
+- `RemoveAt()`
+- Search logic
+- Update logic
+- Delete logic
+- Input validation for list positions
+
+Features / Improvements:
+
+- Added ticket search by subject
+- Added ticket status update
+- Added ticket deletion
+- Added numbered ticket display
+- Added invalid ticket number checking
+- Improved ticket management flow
+
+### M09 - OOP Console Prototype
+
+Update type: Project refactor + feature improvement  
+Product version: Not yet v0.1.0
+
+Concepts applied:
+
+- Object-Oriented Programming
+- Classes and objects
+- Constructors
+- `List<Ticket>`
+- Service class structure
+- Reusable methods
+- Private helper methods
+- `for` loop with index
+- Search, update, and delete logic
+- Input validation using `TryParse`
+- Case-insensitive search using `StringComparison.OrdinalIgnoreCase`
+
+Features / Improvements:
+
+- Added `TicketService` class to handle ticket actions
+- Added `Ticket` model with constructor
+- Added `GetPriorityLabel()` method inside the `Ticket` class
+- Added reusable ticket display through `DisplayTicket()`
+- Added create ticket action
+- Added view all tickets action
+- Added search ticket action
+- Added update ticket status action
+- Added delete ticket action
+- Added ticket count display
+- Improved ticket menu flow
+- Improved input validation for menu options, ticket count, severity, device age, date, and damaged status
+- Improved search by allowing case-insensitive subject matching
+- Reduced repeated ticket display logic
+- Improved separation between ticket data and ticket actions
+
+Current status:
+
+- M09 is completed as an OOP console prototype milestone.
+- The project is not yet tagged as `v0.1.0`.
+- Further cleanup can still be done before the first prototype release.
+
+
 ## Planned Product Versions
 
 - v0.1.0: Console prototype
@@ -212,4 +282,3 @@ Features / Improvements:
 - v0.4.0: ASP.NET Core Web API version
 - v0.5.0: Frontend dashboard prototype
 - v1.0.0: Complete MVP
-
