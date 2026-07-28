@@ -273,6 +273,30 @@ Current status:
 - The project is not yet tagged as `v0.1.0`.
 - Further cleanup can still be done before the first prototype release.
 
+### M09 Cleanup - OOP Console Prototype Review
+
+Update type: Project cleanup + refactor improvement  
+Product version: v0.1.0 candidate, not final release yet
+
+Cleanup completed:
+
+- Moved app title display into `TicketService`
+- Moved menu display into `TicketService`
+- Moved status notification logic into `TicketService`
+- Moved device action logic into `TicketService`
+- Moved urgency message logic into `TicketService`
+- Moved role access message logic into `TicketService`
+- Added menu option validation to only accept options from 1 to 7
+- Improved ticket count validation to prevent zero or negative ticket creation
+- Removed active test data from the program flow by commenting out sample tickets
+- Added empty-list checking before updating tickets
+- Added empty-list checking before deleting tickets
+- Improved search result message when no ticket is found
+- Improved year validation by preventing years below 2000
+- Fixed spelling from `Occurence` to `Occurrence`
+- Fixed display text spacing in ticket count output
+- Cleaned up old commented menu option code
+- Improved comments for validation and program flow
 
 ## Planned Product Versions
 

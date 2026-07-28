@@ -1,117 +1,42 @@
 ﻿//Called out a module to utilize list
 using System.Collections.Generic;
 
-//Declaration and initialization of objects required
+//Declare and initialize required objects
 List<Ticket> tickets = new List<Ticket>();
 TicketService ticketService = new TicketService();
-
-int option;
 bool keepRunning = true;
 
-//method to printout text
-static void ShowAppTitle()
-{
-    Console.WriteLine("\n\nIT Asset & Support Ticket Management System IASTMS\n");
-}
-static void ShowMenu()
-{
-    Console.WriteLine("1. Create Ticket");
-    Console.WriteLine("2. View All Tickets");
-    Console.WriteLine("3. Search Ticket");
-    Console.WriteLine("4. Update Ticket Status");
-    Console.WriteLine("5. Delete Ticket");
-    Console.WriteLine("6. View Ticket Count");
-    //Console.WriteLine("3. Check Ticket Urgency");
-    Console.WriteLine("7. Exit");
-    Console.WriteLine("");
-}
-//method to returns a value
-static string GetStatusNotification(string status)
-{
-    if(status == "Open")
-    {
-        return "This ticket will now be worked on.";
-    }
-    else if (status == "In Progress"){
-        return "Ticket is now being handled.";
-    }
-    else if (status == "Closed"){
-        return "Ticket has already been resolved.";
-    }
-    else{
-        return "Unknown Status.";
-    }
-}
-static string GetDeviceAction(int deviceAge, bool deviceDamaged)
-{
-    if(deviceAge > 2 || deviceDamaged)
-    {
-        return "Replacement is recommended.";
-    }
-    else
-    {
-        return "Proceed to Troubleshooting.";
-    }
-}
-static string GetUrgencyMessage(int severity, string status)
-{
-    if(severity == 1 && (status == "Open" || status == "In Progress"))
-    {
-        return "Urgent Active Ticket! We will investigate this issue immediately.";
-    }
-    else if(severity == 1 && status == "Closed")
-    {
-        return "Urgent but already resolved";
-    }
-    else
-    {
-        return "Regular Ticket";
-    }
-
-}
-static string GetRoleAccessMessage(string role)
-{
-    if(role == "Admin" || role == "Technician")
-    {
-       return "Please work on the Ticket and provide updates!";
-    }
-    else
-    {
-        return  "You can only view this ticket.";
-    }
-}
-
-
 // Print out the App Title
-ShowAppTitle();
-
-//tickets.Add(new Ticket("subject1", "description1","Open",3,1,1,2026,"Lenovo",5,true,"Dave"));
-//tickets.Add(new Ticket("subject2", "description2","Closed",1,2,2,2026,"HP",5,true,"Hera"));
-
+ticketService.ShowAppTitle();
 
 while (keepRunning)
 {
-    ShowMenu();
+    int option;
+    //Prompt the ticket menu interface with action options
+    ticketService.ShowMenu();
+    //added a while loop to repetitively ask user to add a valid input until they got it right
     while (true)
     {
-        //Identify total tickets to list out
+        // Ask the user to select a menu option.
         Console.Write("Choose from the options: ");
-        if (!int.TryParse(Console.ReadLine(), out option))
-        {
-            ticketService.ShowInvalidInput();
-            continue;
-        }
-        else
+        // int.TryParse() safely checks whether the input can be converted to an integer
+        // without crashing the application. The range check ensures that only menu
+        // options from 1 to 7 are accepted. Valid input exits the loop; invalid input
+        // displays an error and repeats.
+        if (int.TryParse(Console.ReadLine(), out option) && option >= 1 && option <= 7)
         {
             break;
         }
+        // Call a TicketService method to display an invalid-input message.
+        ticketService.ShowInvalidInput();
+ 
     }
     Console.WriteLine();
 
     if(option == 1)
     {
         //Declare required variables
-        int totalTicketCount = 0;
+        int totalTicketCount;
         int counter = 1;
         string roleAccess;
 
@@ -119,15 +44,15 @@ while (keepRunning)
         {
             //Identify total tickets to list out
             Console.Write("Indicate how many tickets: ");
+            // Validation using a negative condition:
+            // The input is invalid when it cannot be converted to an integer OR when the
+            // number is zero or negative. Invalid input repeats the loop; valid input exits.
             if (!int.TryParse(Console.ReadLine(), out totalTicketCount) || totalTicketCount <= 0)
             {
                 ticketService.ShowInvalidInput();
                 continue;
             }
-            else
-            {
-                break;
-            }
+            break;
         }
 
         //Collect user input for the ticket information
@@ -137,7 +62,7 @@ while (keepRunning)
             //Identify if roleAccess input is correct
             while (true)
             {
-                //Verify correct input value of roler
+                // Ask for and validate the user's role.
                 Console.Write("What's your role (Admin/Technician/Viewer)? ");
                 roleAccess = Console.ReadLine() ?? "";
                 if(roleAccess == "Admin" || roleAccess == "Technician" || roleAccess == "Viewer")
@@ -156,16 +81,16 @@ while (keepRunning)
             Console.WriteLine("Good Day! Thank you for filing a ticket. Your ticket number is ABC-123");
 
             // Identify ticket status and the corresponding user notification.
-            Console.WriteLine($"{GetStatusNotification(tickets[recentTicketNumber].Status)}");
+            Console.WriteLine($"{ticketService.GetStatusNotification(tickets[recentTicketNumber].Status)}");
 
             //Identify device replacement
-            Console.WriteLine($"{GetDeviceAction(tickets[recentTicketNumber].Age, tickets[recentTicketNumber].IsDamaged)}");
+            Console.WriteLine($"{ticketService.GetDeviceAction(tickets[recentTicketNumber].Age, tickets[recentTicketNumber].IsDamaged)}");
 
             //Identify and notify ticket urgency
-            Console.WriteLine($"{GetUrgencyMessage(tickets[recentTicketNumber].Severity, tickets[recentTicketNumber].Status)}");
+            Console.WriteLine($"{ticketService.GetUrgencyMessage(tickets[recentTicketNumber].Severity, tickets[recentTicketNumber].Status)}");
     
             //Identify ticket access based on roles
-            Console.WriteLine($"{GetRoleAccessMessage(roleAccess)}");
+            Console.WriteLine($"{ticketService.GetRoleAccessMessage(roleAccess)}");
 
             Console.WriteLine();
             counter++;
@@ -213,7 +138,7 @@ while (keepRunning)
     }
 }
 
-//Contained all details(properties) designated for the class
+// Represents the data and behavior of a support ticket.
 class Ticket
 {
     public string Subject { get; set;}
@@ -266,6 +191,77 @@ class Ticket
 
 class TicketService
 {
+    //method to printout text
+    public void ShowAppTitle()
+    {
+        Console.WriteLine("\n\nIT Asset & Support Ticket Management System IASTMS\n");
+    }
+    public void ShowMenu()
+    {
+        Console.WriteLine("1. Create Ticket");
+        Console.WriteLine("2. View All Tickets");
+        Console.WriteLine("3. Search Ticket");
+        Console.WriteLine("4. Update Ticket Status");
+        Console.WriteLine("5. Delete Ticket");
+        Console.WriteLine("6. View Ticket Count");
+        Console.WriteLine("7. Exit");
+        Console.WriteLine("");
+    }
+    // Return a notification based on the ticket status.
+    public string GetStatusNotification(string status)
+    {
+        if(status == "Open")
+        {
+            return "This ticket will now be worked on.";
+        }
+        else if (status == "In Progress"){
+            return "Ticket is now being handled.";
+        }
+        else if (status == "Closed"){
+            return "Ticket has already been resolved.";
+        }
+        else{
+            return "Unknown Status.";
+        }
+    }
+    public string GetDeviceAction(int deviceAge, bool deviceDamaged)
+    {
+        if(deviceAge > 2 || deviceDamaged)
+        {
+            return "Replacement is recommended.";
+        }
+        else
+        {
+            return "Proceed to troubleshooting.";
+        }
+    }
+    public string GetUrgencyMessage(int severity, string status)
+    {
+        if(severity == 1 && (status == "Open" || status == "In Progress"))
+        {
+            return "Urgent Active Ticket! We will investigate this issue immediately.";
+        }
+        else if(severity == 1 && status == "Closed")
+        {
+            return "Urgent but already resolved";
+        }
+        else
+        {
+            return "Regular Ticket";
+        }
+
+    }
+    public string GetRoleAccessMessage(string role)
+    {
+        if(role == "Admin" || role == "Technician")
+        {
+        return "Please work on the Ticket and provide updates!";
+        }
+        else
+        {
+            return  "You can only view this ticket.";
+        }
+    }
     public void ShowInvalidInput()
     {
         Console.WriteLine("Incorrect input. Please try again!\n");
@@ -301,7 +297,7 @@ class TicketService
         Console.WriteLine($"Ticket Priority: {ticket.GetPriorityLabel()} - {ticket.Severity}");
 
         Console.WriteLine($"Ticket Status: {ticket.Status}");
-        Console.WriteLine($"Date of Occurence (m/d/y): {ticket.Month}/{ticket.Day}/{ticket.Year}\n");
+        Console.WriteLine($"Date of Occurrence (m/d/y): {ticket.Month}/{ticket.Day}/{ticket.Year}\n");
     }
     public void CreateTicket(List<Ticket> tickets)
     {
@@ -332,18 +328,14 @@ class TicketService
                 }
             }
 
-            while (true)
+            // compact validation inside the while condition:
+            // Continue looping while the input is not an integer OR the age is negative.
+            Console.Write("Age of Device (year(s)): ");
+
+            while (!int.TryParse(Console.ReadLine(), out age) || age < 0)
             {
-                Console.Write("Age of Device(year(s)): ");
-                if(!int.TryParse(Console.ReadLine(), out age) || age < 0)
-                {
-                    ShowInvalidInput();
-                    continue;
-                }
-                else
-                {
-                    break;
-                }
+                ShowInvalidInput();
+                Console.Write("Age of Device (year(s)): ");
             }
 
             //Verify correct input value of device damage status
@@ -357,7 +349,7 @@ class TicketService
                 ShowInvalidInput();
             }
 
-            //Verify the correct input value of severity
+            // Verify the correct input value of severity
             while (true)
             {
                 Console.Write("Ticket Severity (1|2|3): ");
@@ -366,10 +358,7 @@ class TicketService
                     ShowInvalidInput();
                     continue;
                 }
-                else
-                {
-                    break;
-                }
+                break;
             }
             
             //verify the correct input value of status
@@ -415,7 +404,7 @@ class TicketService
             while (true)
             {
                 Console.Write("Year: ");
-                if(!int.TryParse(Console.ReadLine(), out year))
+                if(!int.TryParse(Console.ReadLine(), out year) || year < 2000)
                 {
                     ShowInvalidInput();
                 }
@@ -470,84 +459,101 @@ class TicketService
         }
         if (!found)
         {
-            Console.WriteLine("\nThe ticket subject is not existing.\n");
+            Console.WriteLine("\nNo ticket with that subject was found.\n");
         }
     }
     public void UpdateTicketStatus(List<Ticket>  tickets)
     {
-        int ticketNumber;
-
-        while (true)
+        if (tickets.Count == 0)
         {
-            //Identify which ticket to update status
-            Console.Write("Which ticket to update status: ");
-            if (!int.TryParse(Console.ReadLine(), out ticketNumber))
-            {
-                Console.WriteLine("Please enter a valid number. \n");
-                continue;
-            }
-            else
-            {
-                break;
-            }
+            Console.WriteLine("No tickets are available.\n");
+            return;
         }
-
-        int index = ticketNumber - 1;
-
-        if(index >= 0 && index < tickets.Count)
+        else
         {
-            string newStatus;
+            int ticketNumber;
+
             while (true)
             {
-                Console.Write("Enter new status (Open/In Progress/Closed): ");
-                newStatus = Console.ReadLine() ?? "";
-
-                if (newStatus == "Open" || newStatus == "In Progress" || newStatus == "Closed")
+                //Identify which ticket to update status
+                Console.Write("Which ticket to update status: ");
+                if (!int.TryParse(Console.ReadLine(), out ticketNumber))
+                {
+                    Console.WriteLine("Please enter a valid number. \n");
+                    continue;
+                }
+                else
                 {
                     break;
                 }
-
-                ShowInvalidInput();
             }
-            tickets[index].Status = newStatus;
-            Console.WriteLine("Ticket status updated successfully.\n");
-  
-        }
-        else
-        {
-            Console.WriteLine("\nThe ticket is not existing.\n");
-        }
-    }
-    public void DeleteTicket(List<Ticket> tickets)
-    {
-        int ticketNumber;
-        while (true)
-        {
-            Console.Write("Which ticket to delete: ");
-            if(!int.TryParse(Console.ReadLine(), out ticketNumber))
+
+            int index = ticketNumber - 1;
+
+            if(index >= 0 && index < tickets.Count)
             {
-                Console.WriteLine("Please enter a valid number.\n");
-                continue;
+                string newStatus;
+                while (true)
+                {
+                    Console.Write("Enter new status (Open/In Progress/Closed): ");
+                    newStatus = Console.ReadLine() ?? "";
+
+                    if (newStatus == "Open" || newStatus == "In Progress" || newStatus == "Closed")
+                    {
+                        break;
+                    }
+
+                    ShowInvalidInput();
+                }
+                tickets[index].Status = newStatus;
+                Console.WriteLine("Ticket status updated successfully.\n");
+    
             }
             else
             {
-                break;
+                Console.WriteLine("\nThe ticket is not existing.\n");
             }
         }
-        int index = ticketNumber - 1;
-        if(index >= 0 && index < tickets.Count)
+     
+    }
+    public void DeleteTicket(List<Ticket> tickets)
+    {
+        if (tickets.Count == 0)
         {
-            tickets.RemoveAt(index);
-            Console.WriteLine("Ticket has been deleted.\n");
+            Console.WriteLine("No tickets are available.\n");
+            return;
         }
         else
         {
-            Console.WriteLine("\nThe ticket is not existing.\n");
+            int ticketNumber;
+            while (true)
+            {
+                Console.Write("Which ticket to delete: ");
+                if(!int.TryParse(Console.ReadLine(), out ticketNumber))
+                {
+                    Console.WriteLine("Please enter a valid number.\n");
+                    continue;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            int index = ticketNumber - 1;
+            if(index >= 0 && index < tickets.Count)
+            {
+                tickets.RemoveAt(index);
+                Console.WriteLine("Ticket has been deleted.\n");
+            }
+            else
+            {
+                Console.WriteLine("\nThe ticket is not existing.\n");
+            }
         }
     }
     public void ViewTicketCount(List<Ticket> tickets)
     {
-        Console.WriteLine($"There is a total  of {tickets.Count} tickets.\n");
+        Console.WriteLine($"There is a total of {tickets.Count} tickets.\n");
     }
 }
 
