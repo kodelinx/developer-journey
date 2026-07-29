@@ -41,3 +41,12 @@ The goal of this project is to apply my managed services experience into a pract
 * Day 4: Search, Update, and Delete Ticket Actions
 * Day 5: Refactor IASTMS Using OOP
 * Day 6: Review, Cleanup, GitHub, and Documentation
+
+### Week 2
+
+* Day 1: Final v0.1.0 Candidate Preparation
+* Day 2: Release IASTMS v0.1.0 + Git Tag
+* Day 3: Separate Classes Into Files (`Program.cs`, `Ticket.cs`, `TicketService.cs`)
+* Day 4: Constants for Fixed Values (`Status`, `Role`, `Device`)
+* Day 5: Input Validation Helper Methods
+* Day 6: Review, Cleanup, GitHub, and v0.2.0 Planning

@@ -78,7 +78,8 @@ while (keepRunning)
 
             int recentTicketNumber = tickets.Count - 1;
             // Notify user that the ticket has been created, ticket details for reference.
-            Console.WriteLine("Good Day! Thank you for filing a ticket. Your ticket number is ABC-123");
+            //tickets.Count:000 prints out the total number of items in the list with a stanard format of 3 integers.
+            Console.WriteLine($"Good Day! Thank you for filing a ticket. Your ticket number is ABC-{tickets.Count:000}");
 
             // Identify ticket status and the corresponding user notification.
             Console.WriteLine($"{ticketService.GetStatusNotification(tickets[recentTicketNumber].Status)}");
@@ -194,7 +195,7 @@ class TicketService
     //method to printout text
     public void ShowAppTitle()
     {
-        Console.WriteLine("\n\nIT Asset & Support Ticket Management System IASTMS\n");
+        Console.WriteLine("\n\nIT Asset & Support Ticket Management System (IASTMS)\n");
     }
     public void ShowMenu()
     {

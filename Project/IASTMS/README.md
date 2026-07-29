@@ -298,6 +298,51 @@ Cleanup completed:
 - Cleaned up old commented menu option code
 - Improved comments for validation and program flow
 
+### v0.1.0 Candidate Preparation
+
+Update type: Product version preparation + cleanup  
+Product version: v0.1.0 candidate
+
+Focus:
+
+- Reviewed the M09 OOP console prototype
+- Tested create, view, search, update, delete, and count ticket actions
+- Checked menu input validation
+- Checked ticket count validation
+- Checked empty-list handling for update and delete actions
+- Confirmed that test data is not active in the program flow
+- Prepared the project for the first console prototype version
+
+Small improvements:
+
+- Improved ticket number message by using the current ticket count
+- Improved app title formatting
+- Reviewed README documentation for release readiness
+
+Current status:
+
+- IASTMS is ready to be reviewed as a `v0.1.0` candidate.
+- The project has a working OOP console prototype.
+- The project is not yet tagged as `v0.1.0`.
+
+v0.1.0 candidate features:
+
+- Create tickets
+- Store multiple tickets using `List<Ticket>`
+- View all tickets
+- Search tickets by subject
+- Update ticket status
+- Delete tickets
+- View ticket count
+- Validate user input
+- Use `Ticket` model
+- Use `TicketService` class
+- Use constructors and reusable methods
+
+Next planned step:
+
+- Final review and release `IASTMS v0.1.0 - Console Prototype`
+
 ## Planned Product Versions
 
 - v0.1.0: Console prototype
