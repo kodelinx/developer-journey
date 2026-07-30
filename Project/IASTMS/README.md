@@ -421,6 +421,44 @@ Features / Improvements:
 - Improved separation between app flow, ticket data, and ticket actions
 - Preserved existing ticket management behavior
 
+### M11 - Constants for Fixed Values
+
+Update type: Project refactor + maintainability improvement  
+Product version: After v0.1.0
+
+Learning scope:
+
+- Constants
+- Fixed values
+- Magic strings
+- Safer string comparison
+- Maintainability
+- Cleaner validation logic
+
+Concepts applied:
+
+- `const`
+- `private const string`
+- Reusable fixed values
+- Role validation method
+- Status validation cleanup
+- Device brand validation cleanup
+
+Features / Improvements:
+
+- Added constants for ticket statuses
+- Added constants for user roles
+- Added constants for device brands
+- Reduced repeated hardcoded strings
+- Improved status checking logic
+- Improved device validation logic
+- Added reusable role validation through `IsValidRole()`
+- Improved code maintainability
+- Reduced risk of spelling-related bugs
+- Added empty-list validation before searching tickets
+- Added user notification when no tickets are available for search
+
+
 ## Planned Product Versions
 
 - v0.1.0: Console prototype
