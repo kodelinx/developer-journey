@@ -392,6 +392,34 @@ Known limitations:
 - No database or file storage yet
 - No authentication or user accounts yet
 
+### M10 - Separated Class Files
+
+Update type: Project refactor + structure improvement  
+Product version: After v0.1.0
+
+Learning scope:
+
+- Multi-file C# project structure
+- Class separation
+- Code organization
+- Model class file
+- Service class file
+- Cleaner `Program.cs`
+- Separation of responsibilities
+
+Files added:
+
+- `Ticket.cs`
+- `TicketService.cs`
+
+Features / Improvements:
+
+- Moved `Ticket` class into `Ticket.cs`
+- Moved `TicketService` class into `TicketService.cs`
+- Reduced the size of `Program.cs`
+- Improved project readability
+- Improved separation between app flow, ticket data, and ticket actions
+- Preserved existing ticket management behavior
 
 ## Planned Product Versions
 
