@@ -343,6 +343,56 @@ Next planned step:
 
 - Final review and release `IASTMS v0.1.0 - Console Prototype`
 
+### v0.1.0 - Console Prototype Release
+
+Release type: Product version release  
+Version: v0.1.0  
+Status: Released
+
+Summary:
+
+IASTMS v0.1.0 is the first usable console prototype of the IT Asset & Support Ticket Management System. This version focuses on core ticket management features using C# console programming and basic object-oriented programming.
+
+Included features:
+
+- Create tickets
+- Store multiple tickets using `List<Ticket>`
+- View all tickets
+- Search tickets by subject
+- Update ticket status
+- Delete tickets
+- View ticket count
+- Validate user input
+- Display dynamic ticket numbers
+- Use `Ticket` model
+- Use `TicketService` class
+- Use constructors and reusable methods
+
+Concepts demonstrated:
+
+- C# console input/output
+- Variables and data types
+- Conditional statements
+- Logical operators
+- `while` loops
+- `for` loops
+- `List<T>`
+- Classes and objects
+- Constructors
+- Methods
+- Service class structure
+- Basic OOP refactoring
+
+Known limitations:
+
+- Tickets are not saved after the program closes
+- Ticket numbers are based on the current list count only
+- Classes are still inside `Program.cs`
+- Fixed values such as status, role, and device brand are still written as strings
+- No database or file storage yet
+- No authentication or user accounts yet
+
+
 ## Planned Product Versions
 
 - v0.1.0: Console prototype
