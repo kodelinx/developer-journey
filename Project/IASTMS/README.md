@@ -458,6 +458,40 @@ Features / Improvements:
 - Added empty-list validation before searching tickets
 - Added user notification when no tickets are available for search
 
+### M12 - Input Validation Helper Methods
+
+Update type: Project refactor + validation improvement  
+Product version: After v0.1.0
+
+Learning scope:
+
+- Helper methods
+- Input validation
+- `TryParse`
+- Reusable validation logic
+- Method responsibility
+- Cleaner console input flow
+
+Concepts applied:
+
+- Reusable number validation method
+- Reusable boolean validation method
+- Range checking
+- Early return through valid input
+- Reduced repeated validation loops
+
+Features / Improvements:
+
+- Added `GetValidNumber()` helper method
+- Added `GetValidBoolean()` helper method
+- Refactored menu option validation
+- Refactored ticket count validation
+- Refactored device age validation
+- Refactored severity validation
+- Refactored date validation
+- Reduced repeated `while` and `TryParse` blocks
+- Improved readability of `Program.cs`
+- Improved readability of `CreateTicket()`
 
 ## Planned Product Versions
 
