@@ -29,22 +29,4 @@ public class Ticket
         AffectedUser = affectedUser;
 
     }
-    //Added method in a class
-    public string GetPriorityLabel()
-    {
-        if(Severity == 1)
-        {
-        return "High";
-        }else if (Severity == 2)
-        {
-            return "Medium";
-        }else if (Severity == 3)
-        {
-            return "Low";
-        }
-        else{
-            return "Undefined";
-        }
-
-    }
 }

@@ -1,7 +1,3 @@
-//Called out a module to utilize list
-using System.Collections.Generic;
-using System.Reflection.Metadata;
-
 class TicketService
 {
     //method to printout text
@@ -14,7 +10,7 @@ class TicketService
     private const string RoleViewer = "Viewer";
 
     private const string DeviceLenovo = "Lenovo";
-    private const string DeviceMacBook = "Macbook";
+    private const string DeviceMacBook = "MacBook";
     private const string DeviceHp = "HP";
     
     //This is a helper method to avoid repeating validations
@@ -46,6 +42,79 @@ class TicketService
             }
             ShowInvalidInput();
         }
+    }
+
+    public string GetValidStatus(string message)
+    {
+        while (true)
+        {
+            string status = GetRequiredText(message);
+
+            if (status == StatusOpen || status == StatusInProgress || status == StatusClosed)
+            {
+                return status;
+            }
+            ShowInvalidInput();
+        }
+    }
+    public string GetValidDeviceBrand(string message)
+    {
+            while (true)
+            {
+                string brand= GetRequiredText(message);
+                if (brand == DeviceLenovo || brand == DeviceMacBook || brand == DeviceHp)
+                {
+                    return brand;
+                }  
+                ShowInvalidInput();
+
+            }
+    }
+    public string GetValidRole(string message)
+    {
+        while (true)
+        {
+            // Ask for and validate the user's role.
+            string role = GetRequiredText(message);
+            if(IsValidRole(role))
+            {
+                return role;
+            }
+            ShowInvalidInput();
+        }
+
+    }
+
+    public string GetRequiredText(string message)
+    {
+        while (true)
+        {
+            Console.Write(message);
+            string value = Console.ReadLine() ?? "";
+
+            if (!string.IsNullOrWhiteSpace(value))
+            {
+                return value;
+            }
+            ShowInvalidInput();
+        }
+    }
+    public string GetPriorityLabel(int severity)
+    {
+        if(severity == 1)
+        {
+        return "High";
+        }else if (severity == 2)
+        {
+            return "Medium";
+        }else if (severity == 3)
+        {
+            return "Low";
+        }
+        else{
+            return "Undefined";
+        }
+
     }
 
     public bool IsValidRole(string role)
@@ -155,7 +224,7 @@ class TicketService
 
         // Designate priority level based on indicated severity
         //Called a method from a class ticket
-        Console.WriteLine($"Ticket Priority: {ticket.GetPriorityLabel()} - {ticket.Severity}");
+        Console.WriteLine($"Ticket Priority: {GetPriorityLabel(ticket.Severity)} - {ticket.Severity}");
 
         Console.WriteLine($"Ticket Status: {ticket.Status}");
         Console.WriteLine($"Date of Occurrence (m/d/y): {ticket.Month}/{ticket.Day}/{ticket.Year}\n");
@@ -167,18 +236,14 @@ class TicketService
             bool isDamaged;
 
             Console.WriteLine("\nKindly File a Ticket Below");
-            Console.Write("Ticket Subject: ");
-            string subject = Console.ReadLine() ?? "";
-            Console.Write("Ticket Description: ");
-            string description = Console.ReadLine() ?? "";
-            Console.Write("Affected User: ");
-            string affectedUser  = Console.ReadLine() ?? "";
+            string subject = GetRequiredText("Ticket Subject: ");;
+            string description = GetRequiredText("Ticket Description: ");;
+            string affectedUser  = GetRequiredText("Affected User: ");
 
             //Verify correct input value of Device
             while (true)
             {
-                Console.Write("Affected Device (Lenovo|MacBook|HP): " );
-                brand= Console.ReadLine() ?? "";
+                brand = GetValidDeviceBrand("Affected Device (Lenovo|MacBook|HP): ");
                 if (brand == DeviceLenovo || brand == DeviceMacBook || brand == DeviceHp)
                 {
                     break;
@@ -201,19 +266,8 @@ class TicketService
             severity = GetValidNumber("Ticket Severity (1|2|3): ", 1, 3);
             
             //verify the correct input value of status
-            while (true)
-            {
-                Console.Write("Ticket Status (Open|In Progress|Closed): ");
-                status = Console.ReadLine() ?? "";
-                if (status == StatusOpen || status == StatusInProgress || status == StatusClosed )
-                {
-                    break;
-                }
-                else
-                {
-                    ShowInvalidInput();
-                }
-            }
+            status = GetValidStatus("Ticket Status (Open|In Progress|Closed): ");
+            
             month = GetValidNumber("Month: ", 1, 12);
             day = GetValidNumber("Day: ", 1, 31);
             year = GetValidNumber("Year: ", 2000, 3000);
@@ -253,27 +307,25 @@ class TicketService
             Console.WriteLine("No tickets are available.\n");
             return;
         }
-        else
+
+        string searchSubject = GetRequiredText("Enter Ticket Subject: ");
+
+        bool found = false;
+
+        for (int i = 0; i < tickets.Count; i++)
         {
-            Console.Write("Enter Ticket Subject: ");
-            string searchSubject = Console.ReadLine() ?? "";
-
-            bool found = false;
-
-            for (int i = 0; i < tickets.Count; i++)
+            if (tickets[i].Subject.Contains(searchSubject, StringComparison.OrdinalIgnoreCase))
             {
-                if (tickets[i].Subject.Equals(searchSubject, StringComparison.OrdinalIgnoreCase))
-                {
-                    DisplayTicket(tickets[i], i + 1);
-                    found = true;
-                    break;
-                }
-            }
-            if (!found)
-            {
-                Console.WriteLine("\nNo ticket with that subject was found.\n");
+                DisplayTicket(tickets[i], i + 1);
+                found = true;
+                break;
             }
         }
+        if (!found)
+        {
+            Console.WriteLine("\nNo ticket with that subject was found.\n");
+        }
+        
 
     }
     public void UpdateTicketStatus(List<Ticket>  tickets)
@@ -283,35 +335,19 @@ class TicketService
             Console.WriteLine("No tickets are available.\n");
             return;
         }
+
+        int ticketNumber = GetValidNumber("Which ticket to update status: ", 1, 3000);
+
+        int index = ticketNumber - 1;
+
+        if(index >= 0 && index < tickets.Count)
+        {
+            tickets[index].Status = GetValidStatus("Enter new status (Open/In Progress/Closed): ");
+            Console.WriteLine("Ticket status updated successfully.\n");
+        }
         else
         {
-            int ticketNumber = GetValidNumber("Which ticket to update status: ", 1, 3000);
-
-            int index = ticketNumber - 1;
-
-            if(index >= 0 && index < tickets.Count)
-            {
-                string newStatus;
-                while (true)
-                {
-                    Console.Write("Enter new status (Open/In Progress/Closed): ");
-                    newStatus = Console.ReadLine() ?? "";
-
-                    if (newStatus == StatusOpen || newStatus == StatusInProgress || newStatus == StatusClosed)
-                    {
-                        break;
-                    }
-
-                    ShowInvalidInput();
-                }
-                tickets[index].Status = newStatus;
-                Console.WriteLine("Ticket status updated successfully.\n");
-    
-            }
-            else
-            {
-                Console.WriteLine("\nThe ticket is not existing.\n");
-            }
+            Console.WriteLine("\nThe ticket is not existing.\n");
         }
      
     }
@@ -322,20 +358,18 @@ class TicketService
             Console.WriteLine("No tickets are available.\n");
             return;
         }
+
+        int ticketNumber = GetValidNumber("Which ticket to delete: ", 1, 3000);
+        int index = ticketNumber - 1;
+
+        if(index >= 0 && index < tickets.Count)
+        {
+            tickets.RemoveAt(index);
+            Console.WriteLine("Ticket has been deleted.\n");
+        }
         else
         {
-            int ticketNumber = GetValidNumber("Which ticket to delete: ", 1, 3000);
-            int index = ticketNumber - 1;
-
-            if(index >= 0 && index < tickets.Count)
-            {
-                tickets.RemoveAt(index);
-                Console.WriteLine("Ticket has been deleted.\n");
-            }
-            else
-            {
-                Console.WriteLine("\nThe ticket is not existing.\n");
-            }
+            Console.WriteLine("\nThe ticket is not existing.\n");
         }
     }
     public void ViewTicketCount(List<Ticket> tickets)

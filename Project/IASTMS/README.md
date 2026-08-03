@@ -493,6 +493,65 @@ Features / Improvements:
 - Improved readability of `Program.cs`
 - Improved readability of `CreateTicket()`
 
+### M12 - Input Validation Helper Methods
+
+Update type: Project refactor + validation improvement  
+Product version: After v0.1.0
+
+Learning scope:
+
+- Helper methods
+- Input validation
+- `TryParse`
+- Required text validation
+- Reusable validation logic
+- Range checking
+- Cleaner menu handling
+- Early return patternls
+- Method responsibility
+- Code maintainability
+
+Concepts applied:
+
+- `GetValidNumber()`
+- `GetValidBoolean()`
+- `GetValidStatus()`
+- `GetValidDeviceBrand()`
+- `GetValidRole()`
+- `GetRequiredText()`
+- `switch` statement for menu actions
+- `return` for stopping a method early
+- `StringComparison.OrdinalIgnoreCase` for case-insensitive search
+- `Contains()` for partial subject search
+
+Features / Improvements:
+
+- Added reusable number validation through `GetValidNumber()`
+- Added reusable boolean validation through `GetValidBoolean()`
+- Added reusable required text validation through `GetRequiredText()`
+- Added reusable ticket status validation through `GetValidStatus()`
+- Added reusable device brand validation through `GetValidDeviceBrand()`
+- Added reusable role validation through `GetValidRole()`
+- Refactored menu option validation
+- Refactored ticket count validation
+- Refactored role input validation
+- Refactored device brand validation
+- Refactored ticket status validation
+- Refactored device age validation
+- Refactored severity validation
+- Refactored date validation
+- Prevented blank input for ticket subject, description, affected user, search subject, role, status, and device brand
+- Improved search by allowing partial subject matching
+- Added empty-list validation before searching tickets
+- Added empty-list validation before updating tickets
+- Added empty-list validation before deleting tickets
+- Removed unnecessary `else` blocks after `return`
+- Replaced long `if/else if` menu handling with a cleaner `switch` statement
+- Reduced repeated `while` and `TryParse` validation blocks
+- Improved readability of `Program.cs`
+- Improved readability of `TicketService.cs`
+- Improved separation between menu flow and validation logic
+
 ## Planned Product Versions
 
 - v0.1.0: Console prototype

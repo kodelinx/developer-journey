@@ -1,7 +1,4 @@
-﻿//Called out a module to utilize list
-using System.Collections.Generic;
-
-//Declare and initialize required objects
+﻿//Declare and initialize required objects
 List<Ticket> tickets = new List<Ticket>();
 TicketService ticketService = new TicketService();
 bool keepRunning = true;
@@ -18,96 +15,70 @@ while (keepRunning)
     option = ticketService.GetValidNumber("Choose from the options:  ", 1, 7);
     Console.WriteLine();
 
-    if(option == 1)
+    switch (option)
     {
-        //Declare required variables
-        
-        int counter = 1;
-        string roleAccess;
+        case 1:
+            //Declare required variables
+            int counter = 1;
+            string role;
 
-        int totalTicketCount = ticketService.GetValidNumber("How many tickets would you like to create? ", 1, 100);
+            int totalTicketCount = ticketService.GetValidNumber("How many tickets would you like to create? ", 1, 100);
 
-        //Collect user input for the ticket information
-        while(counter <= totalTicketCount)
-        {
-
-            //Identify if roleAccess input is correct
-            while (true)
+            //Collect user input for the ticket information
+            while(counter <= totalTicketCount)
             {
-                // Ask for and validate the user's role.
-                Console.Write("What's your role (Admin/Technician/Viewer)? ");
-                roleAccess = Console.ReadLine() ?? "";
-                if(ticketService.IsValidRole(roleAccess))
-                {
-                    break;
-                }
+                role = ticketService.GetValidRole("What's your role (Admin/Technician/Viewer)? ");
 
-                ticketService.ShowInvalidInput();
-            }
+                //Call a class method
+                ticketService.CreateTicket(tickets);
 
-            //Call a class method
-            ticketService.CreateTicket(tickets);
+                int recentTicketNumber = tickets.Count - 1;
+                // Notify user that the ticket has been created, ticket details for reference.
+                //tickets.Count:000 prints out the total number of items in the list with a stanard format of 3 integers.
+                Console.WriteLine($"Good Day! Thank you for filing a ticket. Your ticket number is ABC-{tickets.Count:000}");
 
-            int recentTicketNumber = tickets.Count - 1;
-            // Notify user that the ticket has been created, ticket details for reference.
-            //tickets.Count:000 prints out the total number of items in the list with a stanard format of 3 integers.
-            Console.WriteLine($"Good Day! Thank you for filing a ticket. Your ticket number is ABC-{tickets.Count:000}");
+                // Identify ticket status and the corresponding user notification.
+                Console.WriteLine($"{ticketService.GetStatusNotification(tickets[recentTicketNumber].Status)}");
 
-            // Identify ticket status and the corresponding user notification.
-            Console.WriteLine($"{ticketService.GetStatusNotification(tickets[recentTicketNumber].Status)}");
+                //Identify device replacement
+                Console.WriteLine($"{ticketService.GetDeviceAction(tickets[recentTicketNumber].Age, tickets[recentTicketNumber].IsDamaged)}");
 
-            //Identify device replacement
-            Console.WriteLine($"{ticketService.GetDeviceAction(tickets[recentTicketNumber].Age, tickets[recentTicketNumber].IsDamaged)}");
-
-            //Identify and notify ticket urgency
-            Console.WriteLine($"{ticketService.GetUrgencyMessage(tickets[recentTicketNumber].Severity, tickets[recentTicketNumber].Status)}");
-    
-            //Identify ticket access based on roles
-            Console.WriteLine($"{ticketService.GetRoleAccessMessage(roleAccess)}");
-
-            Console.WriteLine();
-            counter++;
-        }  
-    }
-    else if (option == 2)
-    {
-        //Print out the ticket information
-        ticketService.ViewAllTickets(tickets);
-    }
-    else if(option == 3)
-    {
-        //Search for a ticket
-        ticketService.SearchTicket(tickets);
-    }
-    else if(option == 4)
-    {
-        //Update ticket status
-        ticketService.UpdateTicketStatus(tickets);
+                //Identify and notify ticket urgency
+                Console.WriteLine($"{ticketService.GetUrgencyMessage(tickets[recentTicketNumber].Severity, tickets[recentTicketNumber].Status)}");
         
-    }
-    else if(option == 5)
-    {
-        //Delete a ticket
-       ticketService.DeleteTicket(tickets);
-    }
-    else if(option == 6)
-    {
-        //Provide total ticket count
-        ticketService.ViewTicketCount(tickets);
-    }
+                //Identify ticket access based on roles
+                Console.WriteLine($"{ticketService.GetRoleAccessMessage(role)}");
 
-    else if (option == 7)
-    {
-        //Close program
-        Console.WriteLine("Ticket Tracker has been closed.");
-        keepRunning = false;
-        Console.WriteLine();
-    }
-    else
-    {
-        //Indicate that option chosen is not valid
-        Console.WriteLine("Please enter a valid option. Thank you!");
-        Console.WriteLine();
+                Console.WriteLine();
+                counter++;
+            }  
+            break;
+        case 2: 
+            //Print out the ticket information
+            ticketService.ViewAllTickets(tickets);
+            break;
+        case 3: 
+            //Search for a ticket
+            ticketService.SearchTicket(tickets);
+            break;
+        case 4:
+            //Update ticket status
+            ticketService.UpdateTicketStatus(tickets);
+            break;
+        case 5: 
+            //Delete a ticket
+            ticketService.DeleteTicket(tickets);
+            break;
+        case 6:
+            //Provide total ticket count
+            ticketService.ViewTicketCount(tickets);
+            break;
+        case 7:
+            //Close program
+            Console.WriteLine("Ticket Tracker has been closed.");
+            keepRunning = false;
+            Console.WriteLine();
+            break;
     }
 }
 
