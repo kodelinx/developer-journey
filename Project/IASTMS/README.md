@@ -584,6 +584,32 @@ Concepts practiced:
 - Verifying validation flow through `GetValidNumber()`
 - Verifying object creation before adding to `List<Ticket>`
 
+### M14 - Null Handling and Defensive Coding
+
+Update type: Project refactor + input safety improvement  
+Product version: After v0.1.0
+
+Learning scope:
+
+- Null handling
+- Empty string handling
+- Whitespace validation
+- Defensive coding
+- `Console.ReadLine()`
+- Null-coalescing operator `??`
+- `string.IsNullOrWhiteSpace()`
+- `.Trim()`
+- Required text validation
+
+Concepts applied:
+
+- Used `?? ""` to protect against possible null values from `Console.ReadLine()`
+- Used `GetRequiredText()` to prevent blank input
+- Used `string.IsNullOrWhiteSpace()` to reject empty or whitespace-only text
+- Used `.Trim()` to remove extra spaces before validating input
+- Reused required text validation in role, status, device, search, and ticket creation input
+- Simplified device brand input by relying on `GetValidDeviceBrand()`
+
 ## Planned Product Versions
 
 - v0.1.0: Console prototype
