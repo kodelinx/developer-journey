@@ -50,3 +50,11 @@ The goal of this project is to apply my managed services experience into a pract
 * Day 4: Constants for Fixed Values (`Status`, `Role`, `Device`)
 * Day 5: Input Validation Helper Methods
 * Day 6: Review, Cleanup, GitHub,  Menu and helper enahcements, and v0.2.0 Planning
+
+### Week 3
+
+* Day 1: Debugging in VS Code
+* Day 2: try-catch and Exception Handling
+* Day 3: Null Handling and Defensive Coding
+* Day 4: Refactor Large Methods and Improve Method Responsibility
+* Day 5: Review, Cleanup, GitHub, and Interview Explanation Practice
