@@ -552,6 +552,38 @@ Features / Improvements:
 - Improved readability of `TicketService.cs`
 - Improved separation between menu flow and validation logic
 
+### M13 - Debugging Practice
+
+Update type: Learning milestone + debugging practice  
+Product version: After v0.1.0
+
+Learning scope:
+
+- Debugging in VS Code
+- Breakpoints
+- Conditional Breakpoints
+- Step Over
+- Step Into
+- Variable Panel inspection
+  - Locals
+  - Watch
+  - Call Stack
+  - Breakpoints
+- Runtime investigation
+- Ticket creation flow tracing
+- List index debugging
+- Update and delete flow debugging
+
+Concepts practiced:
+
+- Pausing code execution using breakpoints
+- Inspecting variable values while the program is running
+- Stepping into helper methods
+- Watching `tickets.Count` change after creating and deleting tickets
+- Checking how `ticketNumber - 1` converts user input into a list index
+- Verifying validation flow through `GetValidNumber()`
+- Verifying object creation before adding to `List<Ticket>`
+
 ## Planned Product Versions
 
 - v0.1.0: Console prototype
