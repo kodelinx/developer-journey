@@ -610,6 +610,39 @@ Concepts applied:
 - Reused required text validation in role, status, device, search, and ticket creation input
 - Simplified device brand input by relying on `GetValidDeviceBrand()`
 
+### M15 - Method Responsibility Refactor
+
+Update type: Project refactor + code quality improvement  
+Product version: After v0.1.0
+
+Learning scope:
+
+- Method responsibility
+- Refactoring
+- Helper methods
+- Cleaner method structure
+- Reducing method size
+- Preserving existing behavior
+- Code readability
+- Maintainability
+- Tuple
+- `var` keyword
+- Returning multiple values from a method
+
+Concepts applied:
+
+- Reviewed large methods in `TicketService`
+- Identified that `CreateTicket()` was handling many responsibilities
+- Added helper methods for ticket text input
+- Added a helper method for ticket date input
+- Grouped related date validation into `GetTicketDate()`
+- Used a tuple to return multiple related values from `GetTicketDate()`
+- Used `var` to store the returned tuple from `GetTicketDate()`
+- Accessed tuple values using named fields such as `ticketDate.month`, `ticketDate.day`, and `ticketDate.year`
+- Reduced unnecessary upfront variable declarations
+- Improved readability of `CreateTicket()`
+
+
 ## Planned Product Versions
 
 - v0.1.0: Console prototype
