@@ -680,6 +680,44 @@ Features / Improvements:
 - Added basic error handling for file saving
 - Preserved existing create, view, search, update, delete, and count actions
 
+### M17 - Load Tickets from Text File
+
+Update type: Feature update + data persistence improvement  
+Product version: After v0.1.0
+
+Learning scope:
+
+- File reading
+- Data persistence
+- `File.Exists()`
+- `File.ReadAllLines()`
+- `Split()`
+- Converting text back into object data
+- Recreating objects from saved file data
+- `try-catch` for file reading
+- Save and load flow
+
+Concepts applied:
+
+- Used `File.Exists()` to check if `tickets.txt` exists before loading
+- Used `File.ReadAllLines()` to read saved ticket records
+- Used `Split('|')` to separate saved ticket fields
+- Converted saved text values back into `int` and `bool`
+- Recreated `Ticket` objects from saved text data
+- Added loaded tickets back into `List<Ticket>`
+- Used `tickets.Clear()` before loading saved records
+- Used `try-catch` to handle possible file loading errors
+- Added a new menu option for loading saved tickets
+
+Features / Improvements:
+
+- Added `LoadTicketsFromTextFile()` method
+- Added menu option to load tickets from `tickets.txt`
+- Updated save format to support easier loading
+- Added validation when saved file does not exist
+- Added validation for invalid saved ticket format
+- Preserved existing create, view, search, update, delete, count, and save actions
+
 ## Planned Product Versions
 
 - v0.1.0: Console prototype
