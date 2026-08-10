@@ -642,6 +642,43 @@ Concepts applied:
 - Reduced unnecessary upfront variable declarations
 - Improved readability of `CreateTicket()`
 
+### M16 - Data Persistence | Save Tickets to text file
+
+Update type: Feature update + data persistence improvement  
+Product version: After v0.1.0
+
+Learning scope:
+
+- Data persistence
+- File writing
+- Text file storage
+- `File.WriteAllLines()`
+- `List<string>`
+- Saving object data as readable text
+- `try-catch` for file operations
+- Early return validation
+- Menu option update
+
+Concepts applied:
+
+- Reviewed why `List<Ticket>` only stores data while the app is running
+- Converted `List<Ticket>` data into readable text lines
+- Used `List<string>` to prepare file content before saving
+- Used `File.WriteAllLines()` to write ticket details into `tickets.txt`
+- Added validation to prevent saving when no tickets are available
+- Used `try-catch` to handle possible file writing errors
+- Added a new menu option for saving tickets
+- Updated the exit option after adding the save feature
+
+Features / Improvements:
+
+- Added `SaveTicketsToTextFile()` method
+- Added text file generation using `tickets.txt`
+- Added menu option to save tickets to a text file
+- Saved ticket number, subject, description, affected user, device, technician, priority, status, and occurrence date
+- Added user notification when no tickets are available to save
+- Added basic error handling for file saving
+- Preserved existing create, view, search, update, delete, and count actions
 
 ## Planned Product Versions
 
