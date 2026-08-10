@@ -58,3 +58,12 @@ The goal of this project is to apply my managed services experience into a pract
 * Day 3: Null Handling and Defensive Coding
 * Day 4: Refactor Large Methods and Improve Method Responsibility
 * Day 5: Review, Cleanup, GitHub, and Interview Explanation Practice
+
+### Week 4
+
+* Day 1: What is Data Persistence?
+* Day 2: Save Tickets to a Text File
+* Day 3: Load Tickets from a Text File
+* Day 4: Save and Load Tickets Using CSV or JSON
+* Day 5: Refactor Storage Logic into a Storage Service
+* Day 6: Review, Cleanup, GitHub, and v0.2.0 Candidate Planning
