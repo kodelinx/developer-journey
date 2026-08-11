@@ -718,6 +718,53 @@ Features / Improvements:
 - Added validation for invalid saved ticket format
 - Preserved existing create, view, search, update, delete, count, and save actions
 
+### M18 - Add JSON Save and Load Support
+
+Update type: Feature update + data persistence improvement  
+Product version: After v0.1.0
+
+Learning scope:
+
+- JSON
+- Serialization
+- Deserialization
+- `System.Text.Json`
+- `JsonSerializer.Serialize()`
+- `JsonSerializer.Deserialize()`
+- `File.WriteAllText()`
+- `File.ReadAllText()`
+- Empty constructor for JSON loading
+- Multiple file storage formats
+- Data persistence options
+
+Concepts applied:
+
+- Kept existing text file save and load functionality
+- Added JSON save and load functionality as an additional storage option
+- Serialized `List<Ticket>` into JSON text
+- Saved JSON text into `tickets.json`
+- Read JSON text from `tickets.json`
+- Deserialized JSON back into `List<Ticket>`
+- Added an empty `Ticket()` constructor to support JSON loading
+- Used `JsonSerializerOptions` with `WriteIndented = true`
+- Used `tickets.Clear()` before loading saved records
+- Used `tickets.AddRange()` to restore loaded tickets into memory
+- Used `try-catch` to handle possible JSON file saving and loading errors
+- Updated the menu to support both text file and JSON file persistence
+
+Features / Improvements:
+
+- Preserved `SaveTicketsToTextFile()`
+- Preserved `LoadTicketsFromTextFile()`
+- Added `SaveTicketsToJsonFile()`
+- Added `LoadTicketsFromJsonFile()`
+- Added menu option 9 to save tickets to JSON
+- Added menu option 10 to load tickets from JSON
+- Updated exit option to option 11
+- Allowed the app to support both readable text output and structured JSON storage
+- Preserved existing create, view, search, update, delete, count, text save, and text load actions
+
+
 ## Planned Product Versions
 
 - v0.1.0: Console prototype
