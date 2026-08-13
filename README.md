@@ -67,3 +67,12 @@ The goal of this project is to apply my managed services experience into a pract
 * Day 4: Save and Load Tickets Using CSV or JSON
 * Day 5: Refactor Storage Logic into a Storage Service
 * Day 6: Review, Cleanup, GitHub, and v0.2.0 Candidate Planning
+
+### Week 5
+
+* Day 1: Released IASTMS v0.2.0 with improved console structure and file persistence - SQL and Database Fundamentals
+* Day 2: Tables, Rows, Columns, and Primary Keys
+* Day 3: SELECT, WHERE, INSERT, UPDATE, and DELETE
+* Day 4: Relationships and Foreign Keys
+* Day 5: Map IASTMS Data into Database Tables
+* Day 6: Review, Cleanup, GitHub, and Database Design Documentation

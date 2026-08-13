@@ -764,6 +764,107 @@ Features / Improvements:
 - Allowed the app to support both readable text output and structured JSON storage
 - Preserved existing create, view, search, update, delete, count, text save, and text load actions
 
+### M19 - Ticket Storage Service
+
+Update type: Project refactor + data persistence structure improvement  
+Product version: After v0.1.0
+
+Learning scope:
+
+- Service responsibility
+- Separation of concerns
+- Storage service
+- File storage organization
+- Refactoring
+- Preserving existing behavior
+- Text file save/load
+- JSON file save/load
+
+Concepts applied:
+
+- Created a new `TicketStorageService` class
+- Moved text file save logic into `TicketStorageService`
+- Moved text file load logic into `TicketStorageService`
+- Moved JSON save logic into `TicketStorageService`
+- Moved JSON load logic into `TicketStorageService`
+- Created a `TicketStorageService` object in `Program.cs`
+- Updated storage-related menu cases to use `ticketStorageService`
+- Kept ticket actions inside `TicketService`
+- Kept ticket data inside `Ticket.cs`
+
+Features / Improvements:
+
+- Improved separation between ticket actions and storage actions
+- Reduced responsibility of `TicketService`
+- Made file storage logic easier to find and maintain
+- Preserved text file save and load functionality
+- Preserved JSON save and load functionality
+- Preserved create, view, search, update, delete, and count ticket actions
+- Improved project structure for future storage improvements
+
+### v0.2.0 - Improved Console Structure and File Persistence
+
+Release type: Product version release  
+Version: v0.2.0  
+Status: Released
+
+Summary:
+
+IASTMS v0.2.0 improves the original console prototype by adding better project structure, cleaner service responsibility, stronger input validation, and basic file persistence. This version supports both text file and JSON file save/load functionality.
+
+Included ticket actions:
+
+- Create tickets
+- View all tickets
+- Search tickets
+- Update ticket status
+- Delete tickets
+- View ticket count
+- Save tickets to text file
+- Load tickets from text file
+- Save tickets to JSON file
+- Load tickets from JSON file
+
+Code structure improvements:
+
+- Separated classes into individual files
+- Kept `Ticket.cs` as the ticket model
+- Kept `TicketService.cs` focused on ticket actions
+- Added `TicketStorageService.cs` for file storage logic
+- Improved separation of concerns
+- Improved method responsibility
+- Improved readability and maintainability
+
+Validation and safety improvements:
+
+- Added constants for fixed values such as statuses, roles, and device brands
+- Added reusable input validation helper methods
+- Added required text validation
+- Added null and whitespace handling
+- Used `.Trim()` to clean user input
+- Used `try-catch` for file save and load operations
+
+Data persistence improvements:
+
+- Added text file saving
+- Added text file loading
+- Added JSON file saving
+- Added JSON file loading
+- Used serialization and deserialization for JSON storage
+
+Known limitations:
+
+- Console app only
+- Local file storage only
+- No database yet
+- No web API yet
+- No frontend yet
+- No authentication yet
+- Text file format is still basic
+
+Next planned version:
+
+- `v0.3.0 - Database-Ready Ticket System`
 
 ## Planned Product Versions
 
